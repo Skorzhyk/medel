@@ -13,7 +13,7 @@ class Supply
 
     public function init($data)
     {
-        $droneId = $this->api->request('drone/apply');;
+        $droneId = $this->api->request('drone/apply');
 
         $data['drone_id'] = $droneId;
         $data['status'] = 1;
