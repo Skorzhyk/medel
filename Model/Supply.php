@@ -11,25 +11,12 @@ class Supply
         $this->api = Api::getApi();
     }
 
-
     public function init($data)
     {
-        $droneId = null;
-
-        $drones = $this->api->request('drone/all');
-
-        foreach ($drones as $drone) {
-            if ($drone['status'] == 1) {
-                $drone['status'] = 2;
-                $droneId = $drone['id'];
-                $this->api->request('drone/save', $drone);
-
-                break;
-            }
-        }
+        $droneId = $this->api->request('drone/apply');;
 
         $data['drone_id'] = $droneId;
-        $data['status'] = 0;
+        $data['status'] = 1;
 
         return $this->api->request('supply/save', $data);
     }
